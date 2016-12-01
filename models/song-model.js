@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelizeConnection = require('../db');
-const Genre = require('genre-model')
+const Genre = require('./genre-model')
 
 //////////
 // YOUR CODE HERE:
@@ -18,6 +18,9 @@ const Song = sequelizeConnection.define('song', {
       len: [1, 50],
       isUrl: true
     }
+  },
+  artistId: {
+    type: Sequelize.INTEGER
   }
 })
 
