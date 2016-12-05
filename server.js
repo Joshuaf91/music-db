@@ -7,12 +7,12 @@ const sequelizeConnection = require('./db');
 
 app.use(express.static(path.join(__dirname, '/front/bundle')));
 app.use(bodyParser.urlencoded({ extended: true }));
+//router
+// require('./router');
+app.use(express.static(path.join(__dirname, '/front/bundle')));
+app.use("/", require("./router"));
 
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '/front/index.html'));
-});
-
-//listen on port 8888
+//listen on port 9999
 app.listen('9999', () => console.log('Listening on port 9999'));
 
 
