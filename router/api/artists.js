@@ -31,6 +31,4 @@ router.route("/")
 router.route("/:id")
 	.get(getById);
 
-router.route
-
 module.exports = router;
