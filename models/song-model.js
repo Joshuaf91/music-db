@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const sequelizeConnection = require('../db');
 const Genre = require('./genre-model')
+const Artist = require('./artist-model')
 
 //////////
 // YOUR CODE HERE:
@@ -18,13 +19,11 @@ const Song = sequelizeConnection.define('song', {
       len: [1, 50],
       isUrl: true
     }
-  },
-  artistId: {
-    type: Sequelize.INTEGER
   }
 })
 
-Song.belongsToMany(Genre, {through: 'song_genre'})
-Genre.belongsToMany(Song, {through: 'song_genre'})
+Song.belongsTo(Artist);
+Song.belongsToMany(Genre, {through: 'song_genre'});
+Genre.belongsToMany(Song, {through: 'song_genre'});
 
 module.exports = Song;
