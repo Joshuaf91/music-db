@@ -3,7 +3,16 @@ const path = require('path');
 const Genre = require(path.join(__dirname, '../../models/genre-model'));
 
 const updateGenreById = (req, res) => {
-  Genre.update()
+  Genre.findById(req.params.id)
+      .then(data=>{
+          return data.update({
+          title: req.params.newGenre
+          })
+      })
+      .then(data => {
+          res.send(data);
+      })
+      .catch(err => { res.sendStatus(500) })
 }
 
 const createPost = (req, res) => {
