@@ -11,7 +11,9 @@ const getAllA_Z = (req, res) => {
         .then(data => {
             res.send(data)
         })
-        .catch(err => { res.sendStatus(500) })
+        .catch(err => { 
+            res.sendStatus(500) 
+        })
 }
 
 const makeNewArtist = (req, res) => {
@@ -21,8 +23,12 @@ const makeNewArtist = (req, res) => {
                 name: req.body.name,
             }
         })
-        .then(artist => res.sendStatus(artist))
-        .catch(err => {res.sendStatus(500)})
+        .then(artist => {
+            res.send(artist);
+        })
+        .catch(err => {
+            res.sendStatus(500);
+        })
 }
 
 const getById = (req, res) => {
@@ -30,7 +36,9 @@ const getById = (req, res) => {
         .then(data => {
             res.send(data);
         })
-        .catch(err => { res.sendStatus(500) })
+        .catch(err => { 
+            res.sendStatus(500);
+        })
 }
 
 const deleteById = (req, res) => {
@@ -38,22 +46,26 @@ const deleteById = (req, res) => {
             where: {id: req.params.id}
         })
         .then(data => {
-            res.send(data);
+            res.sendStatus(200);
         })
-        .catch(err => { res.sendStatus(500) })
+        .catch(err => { 
+            res.sendStatus(500);
+        })
 }
 
 const updateById = (req, res) => {
     Artist.findById(req.params.id)
         .then(data=>{
             return data.update({
-            name: req.params.name
+                name: req.params.name
             })
         })
         .then(data => {
             res.send(data);
         })
-        .catch(err => { res.sendStatus(500) })
+        .catch(err => { 
+            res.sendStatus(500);
+        });
 }
 
 router.route("/")
