@@ -16,7 +16,7 @@ Song.sync({force: true})
   song.addGenres([1, 3])
 })
 .then(() => Song.create(
-  {title: 'My Friends Never Die', youtube_url: 'https://www.youtube.com/watch?v=B56lkB18onQ', artistId: 2}
+  {title: 'My Friends Never Die', ykoutube_url: 'https://www.youtube.com/watch?v=B56lkB18onQ', artistId: 2}
 ))
 .then((song) => {
   song.addGenres([2])
