@@ -37,30 +37,29 @@ const makeNewSong = (req, res) => {
 	// }
   Artist.findOrCreate({where: {name: req.body.artist}})
     .then((artist) => {
-    	console.log(artist.id)
       return Song.findOrCreate({
-      	where: {
-      		title: req.body.title,
-      		youtube_url: req.body.youtube_url,
-      		artistId: artist[0].id
-      	}
-      });
-    })
+			where: {
+				title: req.body.title,
+				youtube_url: req.body.youtube_url,
+				artistId: artist[0].id
+			}
+		});
+	})
     .then(song => {
     	console.log("this is the song on line 45", song);
-    	// let genres = JSON.parse(req.body.genres);
+    	let genres = JSON.parse(req.body.genres);
     	console.log(JSON.parse(req.body.genres));
-    	// let genres = req.body.genres.map(element => {
-	    // 	// return Genre.findOrCreate({
-	    // 	// 	where: {
-	    // 	// 		title: element
-	    // 	// 	}
-	    // 	// })
-	    // 	console.log(element);
-	    // })
-	    // console.log("asdfasdfasdfasdfasdfas", genres);
-		// song.addGenres([...genres]);
-		// console.log(song);
+    	let genres = req.body.genres.map(element => {
+	    	return Genre.findOrCreate({
+	    		where: {
+	    			title: element
+	    		}
+	    	})
+	    	console.log(element);
+	    })
+	    console.log("asdfasdfasdfasdfasdfas", genres);
+		song.addGenres([...genres]);
+		console.log(song);
 		return song;
     })
     .then(song => {
